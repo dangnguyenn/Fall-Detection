@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html style="height: 100%, width: 100%">
+<head>
+    <title>Smart Fall</title>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+    <meta name="color-scheme" content="light dark">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+
+    <script src="cordova.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/include/cordova/cordovaHost.js"></script>
+    <script src="js/index.js"></script>
+
+</head>
+<body style="min-height: 100%; min-width: 100%; background: #6A5638">
+<div>
+<!--    <div id="message" style="text-align:center"></div>-->
+
+    <div id="index-screen" class="container mt-3" style="display: block">
+        <div>
+            <h2 class="d-flex justify-content-center text-white">Smart Fall</h2>
+            <p class="d-flex justify-content-center text-white">Sign in:</p>
+        </div>
+        <div class="flex-column">
+            <div>
+                <button id="load_button_login" type="button" class="btn btn-lg btn-block my-4" style="background: #501214; color: white" data-toggle="modal" data-target="#load-profile-modal">Load profile</button>
+            </div>
+            <div>
+                <button id="create-button-login" type="button" class="btn btn-lg btn-block my-4" style="background: #501214; color: white" data-toggle="modal" data-target="#create-profile-modal">Create new profile</button>
+            </div>
+        </div>
+
+    <!--    Load Profile Modal-->
+        <div class="modal fade" id="load-profile-modal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content" style="background: #6A5638">
+                    <div class="modal-header">
+                        <h4 class="modal-title text-white">Load Profile</h4>
+                        <button id="close-x" type="button" class="close text-white" data-dismiss="modal">×</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col my-4">
+                                    <div class="dropdown d-flex justify-content-center">
+                                        <button class="btn btn-lg btn-secondary dropdown-toggle w-75" type="button" id="dropdownMenuButton" data-toggle="dropdown">User </button>
+                                        <div id="user-list" class="dropdown-menu pre-scrollable w-75" aria-labelledby="dropdownMenuButton">
+    <!--                                        Dynamically add items here-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                        <button id="close-cancel" type="button" class="btn btn-lg" style="background: #501214; color: white; width: 40%" data-dismiss="modal">Cancel</button>
+                        <button id="close-load" type="button" class="btn btn-lg" style="background: #501214; color: white; width: 40%" data-dismiss="modal">Load</button>
+    <!--                    <a id="close-load" type="submit" class="btn btn-primary" data-dismiss="modal">Done</a>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <!--    Create Profile Modal-->
+        <div class="modal fade" id="create-profile-modal">
+            <div class="modal-dialog modal-dialog-centered pb-4">
+                <div class="modal-content" style="background: #6A5638">
+                    <form class="needs-validation" id="create-profile-form">
+                    <!--    <form id="create-profile-form" action="#" novalidate>-->
+                        <div class="modal-header">
+                            <h3 class="modal-title text-white">Create New Profile</h3>
+                            <button type="button" class="close text-white" data-dismiss="modal">×</button>
+                        </div>
+
+                        <div class="modal-body">
+                            <div class="panel panel-primary rounded p-3" style="background: #501214">
+                                <div class="panel-heading pb-3">
+                                    <h4 class="panel-title text-white">User Information</h4>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="form-group row">
+                                        <label for="create-username" class="col-3 col-form-label col-form-label-lg font-weight-bold text-white">Name</label>
+                                        <div class="col-9">
+                                            <input id="create-username" type="text" class="form-control form-control-lg" required>
+                                            <div id="invalid-username" class="invalid-feedback text-warning"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="create-dob" class="col-3 col-form-label col-form-label-lg font-weight-bold text-white">DOB</label>
+                                        <div class="col-9">
+                                            <input id="create-dob" type="date" class="form-control form-control-lg" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="create-email" class="col-3 col-form-label col-form-label-lg font-weight-bold text-white">Email</label>
+                                        <div class="col-9">
+                                            <input id="create-email" type="email" class="form-control form-control-lg" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="create-telephone" class="col-3 col-form-label col-form-label-lg font-weight-bold text-nowrap text-white">Phone #</label>
+                                        <div class="col-9">
+                                            <input id="create-telephone" pattern="[0-9]{10}" type="tel" class="form-control form-control-lg" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-3 col-form-label col-form-label-lg font-weight-bold text-white">Sex</label>
+                                        <div class="col-9">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="sex-option" id="sex-male" value="Male" required>
+                                                <label class="form-check-label form-control-lg font-weight-bold text-white" for="sex-male">Male</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="sex-option" id="sex-female" value="Female">
+                                                <label class="form-check-label form-control-lg font-weight-bold text-white" for="sex-female">Female</label>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-3 col-form-label col-form-label-lg font-weight-bold text-white">Height</label>
+                                        <div class="col-8 d-flex">
+                                            <input id="create-height-ft" type="number" class="col-5 form-control form-control-lg mr-2" required>
+                                            <label class="col-form-label col-form-label-lg font-weight-bold text-white">ft.</label>
+                                            <input id="create-height-in" type="number" class="col-5 form-control form-control-lg mx-2" required>
+                                            <label class="col-form-label col-form-label-lg font-weight-bold text-white">in.</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-3 col-form-label col-form-label-lg font-weight-bold text-white">Weight</label>
+                                        <div class="col-9 d-flex">
+                                            <input id="create-weight" type="number" class="form-control form-control-lg mr-2" required>
+                                            <label class="col-form-label col-form-label-lg font-weight-bold text-white">lbs.</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel panel-primary rounded p-3 mt-2" style="background: #501214">
+                                <div class="panel-heading pb-3">
+                                    <h4 class="panel-title text-white">Carer Information</h4>
+                                </div>
+
+                                <div class="panel-body">
+                                    <div class="form-group row">
+                                        <label for="create-carer-name" class="col-3 col-form-label col-form-label-lg font-weight-bold text-white">Name</label>
+                                        <div class="col-9">
+                                            <input id="create-carer-name" type="text" class="form-control form-control-lg" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="create-carer-email" class="col-3 col-form-label col-form-label-lg font-weight-bold text-white">Email</label>
+                                        <div class="col-9">
+                                            <input id="create-carer-email" type="email" class="form-control form-control-lg" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="create-carer-telephone" class="col-3 col-form-label col-form-label-lg font-weight-bold text-nowrap text-white">Phone #</label>
+                                        <div class="col-9">
+                                            <input id="create-carer-telephone" pattern="[0-9]{10}" type="tel" class="form-control form-control-lg" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+<!--                            <div class="panel panel-primary mt-2">-->
+<!--                                <div class="panel-body">-->
+<!--                                    <div class="form-group row">-->
+<!--                                        <label class="col-6 col-form-label col-form-label-lg font-weight-bold text-nowrap text-white">Upload Consent</label>-->
+<!--                                        <div class="col-6">-->
+<!--                                            <div class="form-check form-check-inline">-->
+<!--                                                <input class="form-check-input" type="radio" name="consent-option" id="consent-yes" value="yes" required>-->
+<!--                                                <label class="form-check-label form-control-lg font-weight-bold text-white" for="consent-yes">Yes</label>-->
+<!--                                            </div>-->
+<!--                                            <div class="form-check form-check-inline">-->
+<!--                                                <input class="form-check-input" type="radio" name="consent-option" id="consent-no" value="no" checked required>-->
+<!--                                                <label class="form-check-label form-control-lg font-weight-bold text-white" for="consent-no">No</label>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+                        </div>
+
+                        <div class="modal-footer d-flex justify-content-center form-group">
+                            <button id="close-create-button" type="button" class="btn pt-3" style="background: #501214; color: white; width: 40%" data-dismiss="modal"><h4>Cancel</h4></button>
+                            <button id="create-button" type="submit" class="btn pt-3" style="background: #501214; color: white; width: 40%" data-dismiss="modal"><h4>Done</h4></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="home-screen" class="container" style="display: none" >
+        <ul class="nav nav-pills nav-fill bg-dark rounded" role="tablist">
+            <li class="nav-item mr-1">
+                <a id="activity-tab" class="nav-link active" data-toggle="pill" href="#activity"><h5>Activity</h5></a>
+            </li>
+            <li class="nav-item mr-1">
+                <a id="profile-tab" class="nav-link" data-toggle="pill" href="#profile"><h5>Profile</h5></a>
+            </li>
+            <li class="nav-item">
+                <a id="sign-out-tab" class="nav-link" data-toggle="pill" href="#sign-out"><h5>Sign out</h5></a>
+            </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+            <div id="activity" class="container tab-pane active"><br>
+                <div class="dropdown d-flex justify-content-center">
+                    <button id="activity-list-button" class="btn btn-lg btn-secondary dropdown-toggle w-75 my-4" type="button" id="dropdownMenu2" data-toggle="dropdown">Activity</button>
+                    <div id="activity-list" class="dropdown-menu w-75" aria-labelledby="dropdownMenu2">
+                        <!--    Dynamically add items here-->
+                    </div>
+                </div>
+
+                <div>
+                    <div class="modal fade" id="add-activity-modal">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content" style="background: #6A5638">
+                                <div class="modal-header">
+                                    <h4 class="modal-title text-white">New Activity</h4>
+                                    <button type="button" class="close text-white" data-dismiss="modal">×</button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="panel panel-primary rounded p-3" style="background: #501214">
+                                        <div class="form-group">
+                                            <label for="add-activity" class="text-white">Activity</label>
+                                            <input type="text" id="add-activity" class="form-control" placeholder="Enter new activity ..." />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer d-flex justify-content-center">
+                                    <button type="button" class="btn btn-lg" style="background: #501214; color: white; width: 40%" data-dismiss="modal">Cancel</button>
+                                    <button id="add-activity-button" type="button" class="btn btn-lg" style="background: #501214; color: white; width: 40%" data-dismiss="modal">Done</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="activity-button-div" class="d-flex justify-content-center">
+                    <button id="send-activity-button" type="button" class="btn btn-lg mt-4" style="background: #501214; color: white">Start</button>
+                </div>
+            </div>
+
+            <div id="profile" class="container tab-pane fade"><br>
+                <!--    Dynamically add items here-->
+            </div>
+
+            <!--    Edit profile modal-->
+            <div class="modal fade" id="edit-profile-modal">
+                <div class="modal-dialog modal-dialog-centered pb-4">
+                    <div class="modal-content" style="background: #6A5638">
+                        <form class="edit-needs-validation" id="edit-create-profile-form" action="#">
+                            <div class="modal-header">
+                                <h3 class="modal-title text-white">Edit Profile</h3>
+                                <button type="button" class="close text-white" data-dismiss="modal">×</button>
+                            </div>
+
+                            <div class="modal-body">
+                                <div class="panel panel-primary rounded p-3" style="background: #501214">
+                                    <div class="panel-heading pb-3">
+                                        <h4 class="panel-title text-white">User Information</h4>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="form-group row">
+                                            <label for="edit-create-username" class="col-3 col-form-label col-form-label-lg font-weight-bold text-white">Name</label>
+                                            <div class="col-9">
+                                                <input id="edit-create-username" type="text" class="form-control form-control-lg" required readonly>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="edit-create-dob" class="col-3 col-form-label col-form-label-lg font-weight-bold text-white">DOB</label>
+                                            <div class="col-9">
+                                                <input id="edit-create-dob" type="date" class="form-control form-control-lg" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="edit-create-email" class="col-3 col-form-label col-form-label-lg font-weight-bold text-white">Email</label>
+                                            <div class="col-9">
+                                                <input id="edit-create-email" type="email" class="form-control form-control-lg" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="edit-create-telephone" class="col-3 col-form-label col-form-label-lg font-weight-bold text-nowrap text-white">Phone #</label>
+                                            <div class="col-9">
+                                                <input id="edit-create-telephone" pattern="[0-9]{10}" type="tel" class="form-control form-control-lg" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-3 col-form-label col-form-label-lg font-weight-bold text-white">Sex</label>
+                                            <div class="col-9">
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="edit-sex-option" id="edit-sex-male" value="Male" required>
+                                                    <label class="form-check-label form-control-lg font-weight-bold text-white" for="edit-sex-male">Male</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="edit-sex-option" id="edit-sex-female" value="Female">
+                                                    <label class="form-check-label form-control-lg font-weight-bold text-white" for="edit-sex-female">Female</label>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-3 col-form-label col-form-label-lg font-weight-bold text-white">Height</label>
+                                            <div class="col-8 d-flex">
+                                                <input id="edit-create-height-ft" type="number" class="col-5 form-control form-control-lg mr-2" required>
+                                                <label class="col-form-label col-form-label-lg font-weight-bold text-white">ft.</label>
+                                                <input id="edit-create-height-in" type="number" class="col-5 form-control form-control-lg mx-2" required>
+                                                <label class="col-form-label col-form-label-lg font-weight-bold text-white">in.</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-3 col-form-label col-form-label-lg font-weight-bold text-white">Weight</label>
+                                            <div class="col-9 d-flex">
+                                                <input id="edit-create-weight" type="number" class="form-control form-control-lg mr-2" required>
+                                                <label class="col-form-label col-form-label-lg font-weight-bold text-white">lbs.</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="panel panel-primary rounded p-3 mt-2" style="background: #501214">
+                                    <div class="panel-heading pb-3">
+                                        <h4 class="panel-title text-white">Carer Information</h4>
+                                    </div>
+
+                                    <div class="panel-body">
+                                        <div class="form-group row">
+                                            <label for="edit-create-carer-name" class="col-3 col-form-label col-form-label-lg font-weight-bold text-white">Name</label>
+                                            <div class="col-9">
+                                                <input id="edit-create-carer-name" type="text" class="form-control form-control-lg" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="edit-create-carer-email" class="col-3 col-form-label col-form-label-lg font-weight-bold text-white">Email</label>
+                                            <div class="col-9">
+                                                <input id="edit-create-carer-email" type="email" class="form-control form-control-lg" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="edit-create-carer-telephone" class="col-3 col-form-label col-form-label-lg font-weight-bold text-nowrap text-white">Phone #</label>
+                                            <div class="col-9">
+                                                <input id="edit-create-carer-telephone" pattern="[0-9]{10}" type="tel" class="form-control form-control-lg" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+<!--                                <div class="panel panel-primary mt-2">-->
+<!--                                    <div class="panel-body">-->
+<!--                                        <div class="form-group row">-->
+<!--                                            <label class="col-6 col-form-label col-form-label-lg font-weight-bold text-nowrap text-white">Upload Consent</label>-->
+<!--                                            <div class="col-6">-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="radio" name="consent-option" id="edit-consent-yes" value="yes" required>-->
+<!--                                                    <label class="form-check-label form-control-lg font-weight-bold text-white" for="edit-consent-yes">Yes</label>-->
+<!--                                                </div>-->
+<!--                                                <div class="form-check form-check-inline">-->
+<!--                                                    <input class="form-check-input" type="radio" name="consent-option" id="edit-consent-no" value="no" checked required>-->
+<!--                                                    <label class="form-check-label form-control-lg font-weight-bold text-white" for="edit-consent-no">No</label>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+                            </div>
+
+                            <div class="modal-footer d-flex justify-content-center form-group">
+                                <button type="button" class="btn pt-3" style="background: #501214; color: white; width: 40%" data-dismiss="modal"><h4>Cancel</h4></button>
+                                <button id="edit-create-button" type="submit" class="btn pt-3" style="background: #501214; color: white; width: 40%" data-dismiss="modal"><h4>Done</h4></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="sign-out" class="container tab-pane fade "><br>
+                <h4 class="d-flex justify-content-center mt-2 text-white">Do you want to sign out?</h4>
+                <!--    <a id="sign-out-button" type="submit" class="btn btn-primary d-flex justify-content-center" href="index.html">Sign out</a>-->
+                <div class="d-flex justify-content-center">
+                    <button id="sign-out-button" type="button" class="btn btn-lg mt-4" style="background: #501214; color: white">Sign out</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

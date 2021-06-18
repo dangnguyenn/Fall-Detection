@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/menu_container"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingBottom="5dp"
+    android:paddingTop="5dp"
+    android:background="#00000000"
+    >
+
+    <TextView
+        android:id="@+id/menu_item"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_centerVertical="true"
+        android:text="@string/menu_item"
+        android:textColor="#FFFFFF"
+        android:textSize="24dp"
+        />
+    <TextView
+        android:id="@+id/status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/menu_item"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="24dp"
+        android:paddingTop="0dp"
+        android:paddingLeft="2dp"
+        android:text="OFF"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:background="@drawable/off_bg"
+        android:visibility="invisible"
+        />
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/report"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/menu_item"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="9dp"
+        android:minHeight="0dp"
+        android:textOff="FELL"
+        android:textOn="FELL"
+        android:thumb="@drawable/report_thumb"
+        app:showText="true"
+        android:visibility="invisible"
+        app:switchTextAppearance="@style/switchText"
+        app:track="@drawable/custom_track"
+        />
+
+
+</RelativeLayout>

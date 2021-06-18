@@ -1,0 +1,22 @@
+{
+    "name": "ble-data-collection",
+    "version": "1.0.0",
+    "description": "A BLE module",
+    "main": "ble-data-collection.js",
+    "author": "Colin Campbell & Ryan Wakabayashi",
+    "license": "Apache-2.0",
+    "cordova": {
+        "plugins": {
+            "cordova-plugin-ble": {}
+        }
+    },
+    "dependencies": {
+        "cordova-plugin-ble": "~2.0.1"
+    },
+    "interface": {
+        "functions": {
+            "connect": ["successCallback", "errorCallback"],
+            "subscribe": ["successCallback", "errorCallback", "sensor_type"],
+        }
+    }
+}

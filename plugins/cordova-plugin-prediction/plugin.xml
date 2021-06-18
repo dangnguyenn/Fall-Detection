@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova-plugin-prediction" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>Prediction</name>
+    <js-module name="Prediction" src="www/Prediction.js"><clobbers target="prediction" />
+    </js-module>
+
+
+    <platform name="android">
+        <config-file parent="/" target="res/xml/config.xml">
+            <feature name="Prediction"><param name="android-package" value="com.prediction.Prediction" /></feature>
+        </config-file>
+
+<config-file parent="/" target="AndroidManifest.xml">
+
+
+</config-file>
+
+    <source-file src="src/android/Prediction.java" target-dir="src/com/prediction" />
+</platform>
+</plugin>

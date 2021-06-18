@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#121212" >
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Smart Fall"
+        android:gravity="center"
+        android:textSize="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/white"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Smart Fall"
+        android:gravity="center"
+        android:textSize="10dp"
+        android:layout_alignParentBottom="true"
+        android:textColor="@color/white"
+        />
+
+    <androidx.wear.widget.WearableRecyclerView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/main_menu_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        android:theme="@style/Theme.AppCompat"
+
+        />
+
+</RelativeLayout>

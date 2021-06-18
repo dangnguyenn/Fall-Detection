@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova-plugin-wearOS" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android"><name>WearOS</name>
+
+<js-module name="WearOS" src="www/WearOS.js">
+	<clobbers target="wearOS" />
+</js-module>
+
+<platform name="android">
+	<config-file parent="/*" target="res/xml/config.xml">
+		<feature name="WearOS">
+    	<param name="android-package" value="com.wearOS.WearOS" />
+		</feature>
+	</config-file>
+	
+	<config-file parent="/*" target="AndroidManifest.xml">
+		<uses-permission android:name="android.permission.INTERNET" />
+    	<uses-permission android:name="android.permission.BLUETOOTH" />
+	</config-file>
+
+		<framework src="com.google.android.gms:play-services-wearable:17.0.0"/>
+	<source-file src="src/android/WearOS.java" target-dir="src/com/wearOS" />
+</platform>
+</plugin>

@@ -1,0 +1,12 @@
+<shape
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+
+    <solid android:color="@color/capture_red" />
+
+    <corners android:radius="100dp" />
+
+    <size
+        android:width="120dp"
+        android:height="120dp" />
+</shape>
